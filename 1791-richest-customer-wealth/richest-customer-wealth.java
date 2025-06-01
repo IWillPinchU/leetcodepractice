@@ -6,7 +6,7 @@ class Solution {
             for(int j: i){
                 money += j;
             }
-            if (money > ans) ans = money;
+            ans = (money >= ans) ? money : ans;
         }
         return ans;
     }
