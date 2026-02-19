@@ -14,8 +14,7 @@ class Solution {
             }
         }
 
-        if(start==end) return true;
-        else if(start>end) return true;
-        return false;
+        if(start<end) return false;
+        return true;
     }
 }
