@@ -1,20 +1,16 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        String s = String.valueOf(x);
-        int start = 0;
-        int end = s.length() - 1;
+        if (x < 0) return false;
 
-        while(start<end){
-            if(s.charAt(start) == s.charAt(end)){
-                start++;
-                end--;
-            }
-            else{
-                break;
-            }
+        int reversed = 0;
+        int temp = x;
+
+        while (temp != 0){
+            int digit = temp % 10;
+            reversed = reversed * 10 + digit;
+            temp /= 10;
         }
 
-        if(start<end) return false;
-        return true;
+        return (reversed == x);
     }
 }
