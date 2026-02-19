@@ -11,25 +11,16 @@ class Solution {
 
         int answer = 0;
         char[] arr = s.toCharArray();
-        int temp = 0;
         for(int i = 0; i<arr.length; i++){
             if (i != arr.length - 1){
-                if(romanMap.get(arr[i])==1 && romanMap.get(arr[i+1])==1){
-                    temp++;
-                    continue;
-                }
-                if(romanMap.get(arr[i])==5 && romanMap.get(arr[i+1])==1){
-                    temp+=5;
-                    continue;
-                }
                 if(romanMap.get(arr[i])< romanMap.get(arr[i+1])){
-                    temp+=(romanMap.get(arr[i+1]) - romanMap.get(arr[i]));
+                    answer+=(romanMap.get(arr[i+1]) - romanMap.get(arr[i]));
                     ++i;
                     continue;
                 }
             }
             answer+=romanMap.get(arr[i]);
         }
-        return answer+temp;
+        return answer;
     }
 }
