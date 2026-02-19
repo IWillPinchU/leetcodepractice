@@ -9,16 +9,15 @@ class Solution {
         romanMap.put('D',500);
         romanMap.put('M',1000);
 
-        int answer = 0;
-        for(int i = 0; i<s.length() - 1; ++i){
+        int ans = 0;
+        for(int i = 0; i<s.length() - 1; i++){
             if(romanMap.get(s.charAt(i))< romanMap.get(s.charAt(i+1))){
-                answer -= romanMap.get(s.charAt(i));
-                continue;
+                ans -= romanMap.get(s.charAt(i));
             }
             else{
-                answer+=romanMap.get(s.charAt(i));
+                ans+=romanMap.get(s.charAt(i));
             }
         }
-        return answer + romanMap.get(s.charAt(s.length() - 1));
+        return ans + romanMap.get(s.charAt(s.length() - 1));
     }
 }
