@@ -10,17 +10,15 @@ class Solution {
         romanMap.put('M',1000);
 
         int answer = 0;
-        char[] arr = s.toCharArray();
-        for(int i = 0; i<arr.length; i++){
-            if (i != arr.length - 1){
-                if(romanMap.get(arr[i])< romanMap.get(arr[i+1])){
-                    answer+=(romanMap.get(arr[i+1]) - romanMap.get(arr[i]));
-                    ++i;
-                    continue;
-                }
+        for(int i = 0; i<s.length() - 1; ++i){
+            if(romanMap.get(s.charAt(i))< romanMap.get(s.charAt(i+1))){
+                answer -= romanMap.get(s.charAt(i));
+                continue;
             }
-            answer+=romanMap.get(arr[i]);
+            else{
+                answer+=romanMap.get(s.charAt(i));
+            }
         }
-        return answer;
+        return answer + romanMap.get(s.charAt(s.length() - 1));
     }
 }
