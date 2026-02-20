@@ -1,6 +1,12 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        Arrays.sort(nums);
-        return nums[nums.length/2];
+        HashMap<Integer,Integer> newMap = new HashMap<>();
+        for(int num:nums){
+            if (newMap.containsKey(num)){
+                newMap.put(num,newMap.getOrDefault(num,0)+1);
+            }
+            else newMap.put(num,0);
+        }
+        return Collections.max(newMap.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 }
