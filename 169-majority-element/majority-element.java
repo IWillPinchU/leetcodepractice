@@ -1,10 +1,14 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        HashMap<Integer,Integer> newMap = new HashMap<>();
+        int count = 0;
+        int candidate = 0;
+
         for(int num:nums){
-            newMap.put(num,newMap.getOrDefault(num,0)+1);
-            if (newMap.get(num) > nums.length/2) return num;
+            if (count == 0) candidate = num;
+            if (num == candidate) count++;
+            else count--;
         }
-        return Collections.max(newMap.entrySet(), Map.Entry.comparingByValue()).getKey();
+        
+        return candidate;
     }
 }
