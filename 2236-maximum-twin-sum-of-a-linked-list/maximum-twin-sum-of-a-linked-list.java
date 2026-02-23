@@ -28,7 +28,7 @@ class Solution {
         int maxSum = 0;
         while(slow !=null){
             int currSum = head.val + slow.val;
-            if(currSum > maxSum) maxSum = currSum;
+            maxSum = Math.max(maxSum,currSum);
             slow = slow.next;
             head = head.next;
         }
