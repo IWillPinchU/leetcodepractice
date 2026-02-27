@@ -8,11 +8,8 @@ class Solution {
         }
 
         for(char c:t.toCharArray()){
-            if(ht.containsKey(c)){
-                ht.put(c,ht.getOrDefault(c,0) - 1);
-                if(ht.get(c) == 0) ht.remove(c);
-            }
-            else return false;
+            if(!ht.containsKey(c) || ht.get(c) == 0) return false;
+            ht.put(c,ht.getOrDefault(c,0) - 1);
         }
         return true;
     }
