@@ -3,13 +3,15 @@ class Solution {
         HashMap<Character,Integer> ht = new HashMap<>();
         if(s.length() != t.length()) return false;
 
-        for(char c:s.toCharArray()){
-            ht.put(c,ht.getOrDefault(c,0) + 1);
+        int[] alphabets = new int[26];
+
+        for(int i = 0; i<s.length(); i++){
+            alphabets[s.charAt(i) - 'a'] += 1;
         }
 
-        for(char c:t.toCharArray()){
-            if(!ht.containsKey(c) || ht.get(c) == 0) return false;
-            ht.put(c,ht.getOrDefault(c,0) - 1);
+        for(int i = 0; i<t.length(); i++){
+            if(alphabets[t.charAt(i) - 'a'] == 0) return false;
+            alphabets[t.charAt(i) - 'a'] -= 1;
         }
         return true;
     }
