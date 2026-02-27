@@ -10,7 +10,6 @@ class Solution {
             (s.charAt(i) == ']' && check.peek() == '[')) check.pop();
             else return false;
         }
-        if (check.isEmpty()) return true;
-        return false;
+        return check.isEmpty();
     }
 }
