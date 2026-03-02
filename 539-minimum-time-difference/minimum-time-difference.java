@@ -3,7 +3,7 @@ class Solution {
 
         int[] minutes = new int[timePoints.size()];
         for(int i = 0; i<minutes.length; i++){
-            minutes[i] = Integer.valueOf(timePoints.get(i).substring(0,2)) * 60 + Integer.valueOf(timePoints.get(i).substring(3));
+            minutes[i] = Integer.parseInt(timePoints.get(i).substring(0,2)) * 60 + Integer.parseInt(timePoints.get(i).substring(3));
         }
 
         Arrays.sort(minutes);
