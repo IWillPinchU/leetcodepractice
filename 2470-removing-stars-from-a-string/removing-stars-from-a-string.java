@@ -1,10 +1,16 @@
 class Solution {
     public String removeStars(String s) {
-        StringBuilder sb = new StringBuilder();
-        for(char c:s.toCharArray()){
-            if(c == '*') sb.deleteCharAt(sb.length() - 1);
-            else sb.append(c);
+        int i = 0;
+        char[] result = new char[s.length()];
+
+        for(char c: s.toCharArray()){
+            if(c == '*') i--;
+            else{
+                result[i] = c;
+                i++;
+            }
         }
-        return sb.toString();
+
+        return new String(result, 0, i);
     }
 }
