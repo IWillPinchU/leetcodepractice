@@ -13,8 +13,7 @@ class Solution {
             minimum = Math.min(minimum, minutes[i] - minutes[i - 1]);
         }
 
-        minimum = Math.min(minimum, 1440 - minutes[minutes.length - 1] + minutes[0]);
-        return minimum;
+        return Math.min(minimum, 1440 - minutes[minutes.length - 1] + minutes[0]);
 
     }
 }
