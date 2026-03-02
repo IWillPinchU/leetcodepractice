@@ -1,11 +1,11 @@
 class Solution {
     public String removeOccurrences(String s, String part) {
         StringBuilder result = new StringBuilder();
-
+        int m = part.length();
         for(char c:s.toCharArray()){
             result.append(c);
-            if(result.length() >= part.length() && result.substring(result.length() - part.length()).equals(part)){
-                result.delete(result.length() - part.length(), result.length());
+            if(result.length() >= m && result.substring(result.length() - m).equals(part)){
+                result.delete(result.length() - m, result.length());
             }
         }
         
