@@ -7,16 +7,14 @@ class Solution {
         while(i < j){
             if (Character.isLetter(string[i]) && Character.isLetter(string[j])){
                 char temp = string[i];
-                string[i] = string[j];
-                string[j] = temp;
-                i++;
-                j--;
+                string[i++] = string[j];
+                string[j--] = temp;
             }
             else{
                 if(!Character.isLetter(string[i])) i++;
                 else j--;
             }
         }
-        return new String(string, 0, s.length());
+        return new String(string);
     }
 }
