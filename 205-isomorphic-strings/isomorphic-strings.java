@@ -1,11 +1,19 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        int[] sMap = new int[128];
-        int[] tMap = new int[128];
+        Map<Character, Character> map1 = new HashMap<>();
+        Map<Character, Character> map2 = new HashMap<>();
+
         for(int i = 0; i<s.length(); i++){
-            if(sMap[s.charAt(i)] != tMap[t.charAt(i)]) return false;
-            sMap[s.charAt(i)] = i + 1;
-            tMap[t.charAt(i)] = i + 1;
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
+            if(!map1.containsKey(c1) && !map2.containsKey(c2)){
+                map1.put(c1,c2);
+                map2.put(c2,c1);
+            }
+            else if(map1.containsKey(c1) && map2.containsKey(c2)){
+                if(map1.get(c1) != c2 || map2.get(c2) != c1) return false;
+            }
+            else return false;
         }
         return true;
     }
