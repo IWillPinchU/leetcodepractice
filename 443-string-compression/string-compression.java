@@ -8,32 +8,23 @@ class Solution {
             char c = chars[i];
             if(c == last){
                 count++;
+                continue;
             }
-            else{
-                if(count == 1){
-                    chars[idx++] = last;
-                    count = 1;
-                    last = c;
-                }
-                else{
-                    chars[idx++] = last;
-                    String counter = Integer.toString(count);
-                    for(char c2:counter.toCharArray()){
-                        chars[idx++] = c2;
-                    }
-                    count = 1;
-                    last = c;
+            chars[idx++] = last;
+            if(count != 1){
+                String counter = Integer.toString(count);
+                for(int j=0; j<counter.length(); j++){
+                    chars[idx++] = counter.charAt(j);
                 }
             }
+            count = 1;
+            last = c;
         }
-        if(count == 1){
-            chars[idx++] = last;
-        }
-        else{
-            chars[idx++] = last;
+        chars[idx++] = last;
+        if(count != 1){
             String counter = Integer.toString(count);
-            for(char c:counter.toCharArray()){
-                chars[idx++] = c;
+            for(int i=0; i<counter.length(); i++){
+                chars[idx++] = counter.charAt(i);
             }
         }
         return idx;
