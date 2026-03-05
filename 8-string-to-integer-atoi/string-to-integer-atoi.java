@@ -1,10 +1,10 @@
 class Solution {
     public int myAtoi(String s) {
         char[] stringy = s.toCharArray();
-        int result = 0;
+        long result = 0;
         int i = 0;
         int flag = 1;
-        if(s.length() == 0) return result;
+        if(s.length() == 0) return 0;
         for(; i<stringy.length; i++){
             if(stringy[i] == ' ') continue;
             else break;
@@ -14,18 +14,15 @@ class Solution {
             i++;
         }
         for(;i<stringy.length;i++){
-            if(Character.isLetter(stringy[i])) break;
-            else if(stringy[i] == '+' || stringy[i] == '-' || stringy[i] == '.') break;
-            else if(stringy[i] == ' ') break;
-            else{
-                if((result > 214748364) || ((result == 214748364) && stringy[i] - '0' >  7)){
+            if(Character.isDigit(stringy[i])){
+                result = result * 10 + stringy[i] - '0';
+                if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE){
                     if (flag == -1) return Integer.MIN_VALUE;
                     else return Integer.MAX_VALUE;
                 }
-                result = result * 10 + stringy[i] - '0';
             }
+            else break;
         }
-
-        return result * flag;
+        return (int)result * flag;
     }
 }
