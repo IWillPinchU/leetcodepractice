@@ -1,13 +1,16 @@
 class Solution {
     public List<String> findAndReplacePattern(String[] words, String pattern) {
-        List<String> result = new ArrayList<>();
-        for(String s:words){
-            int flag = 1;
-            for(int i = 0; i<s.length(); i++){
-                if(s.indexOf(s.charAt(i)) != pattern.indexOf(pattern.charAt(i))) flag = 0;
-            }
-            if(flag == 1) result.add(s);
+        List<String> res = new ArrayList<>();
+        for (String word : words) {
+            if (check(word, pattern)) res.add(word);
         }
-        return result;
+        return res;
+    }
+    
+    boolean check(String a, String b) {
+        for (int i = 0; i < a.length(); i++) {
+            if (a.indexOf(a.charAt(i)) != b.indexOf(b.charAt(i))) return false;
+        }
+        return true;
     }
 }
