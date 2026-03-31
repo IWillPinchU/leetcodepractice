@@ -1,16 +1,24 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> results = new ArrayList<>();
-        genParenthesis(n, n, results, "");
+        genParenthesis(n, n, results, new StringBuilder());
         return results;
     }
 
-    public void genParenthesis(int open, int closed, List<String> results, String s){
+    public void genParenthesis(int open, int closed, List<String> results, StringBuilder sb){
         if(open == 0 && closed == 0){
-            results.add(s);
+            results.add(sb.toString());
             return;
         }
-        if(open > 0) genParenthesis(open-1, closed, results, s + "(");
-        if(open<closed) genParenthesis(open, closed-1, results, s + ")");
+        if(open > 0){
+            sb.append("(");
+            genParenthesis(open-1, closed, results, sb);
+            sb.deleteCharAt(sb.length()-1);
+        }
+        if(open<closed){
+            sb.append(")");
+            genParenthesis(open, closed-1, results, sb);
+            sb.deleteCharAt(sb.length()-1);
+        }
     }
 }
