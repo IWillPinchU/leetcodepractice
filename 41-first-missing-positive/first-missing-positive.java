@@ -8,6 +8,7 @@ class Solution {
             if(num > 0 && num == i){
                 i++;
             }
+            if(num > i) return i;
         }
         return i;
     }
