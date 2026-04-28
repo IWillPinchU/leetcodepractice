@@ -1,17 +1,16 @@
 class Solution {
     public int[] kWeakestRows(int[][] mat, int k) {
-        int[][] strength = new int[mat.length][2];
-        int  i = 0;
-        for(int[] row: mat){
-            strength[i][0] = i;
-            strength[i][1] = binarySearch(row);
-            i++;
+        PriorityQueue<int[]> pq = new PriorityQueue<>( (a,b) -> a[1] == b[1] ? b[0] - a[0] : b[1] - a[1]);
+        int[] result = new int[k];
+        
+        for(int i = 0; i<mat.length; i++){
+            pq.offer(new int[]{i, binarySearch(mat[i])});
+            if(pq.size() > k) pq.poll();
         }
-        Arrays.sort(strength, (a,b) -> a[1] == b[1] ? a[0] - b[0] : a[1] - b[1]);
-        int[] results = new int[k];
-        for (i = 0; i < k; i++)
-            results[i] = strength[i][0];
-        return results;
+
+        while(k > 0) result[--k] = pq.poll()[0];
+
+        return result;
     }
 
     public int binarySearch(int[] arr){
