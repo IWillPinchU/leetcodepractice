@@ -2,30 +2,24 @@ class Solution {
     public int largestInteger(int num) {
         PriorityQueue<Integer> evenNums = new PriorityQueue<>( (a,b) -> b - a);
         PriorityQueue<Integer> oddNums = new PriorityQueue<>( (a,b) -> b - a);
-    
-        int[] arr = new int[10];
-        int i = 0;
-        //1 for odd and 2 for even
-        while(num > 0){
-            int temp = num % 10;
-            num = num/10;
-            if(temp%2 == 0){
-                evenNums.add(temp);
-                arr[i++] = 2;
-            }
-            else{
-                oddNums.add(temp);
-                arr[i++] = 1;
-            }
+        int n = num;
+
+        while(n > 0){
+            int r = n % 10;
+            n = n/10;
+            if(r%2 == 0) evenNums.offer(r);
+            else oddNums.offer(r);
         }
 
+        String s = String.valueOf(num);
         int sum = 0;
 
-        for(int k = i - 1; k>=0; k--){
-            if(arr[k] == 1){
-                sum = sum*10 + oddNums.poll();
+        for(int i = 0; i<s.length(); i++){
+            sum *= 10;
+            if((s.charAt(i) - '0') % 2 == 0){
+                sum += evenNums.poll();
             }
-            else sum = sum*10 + evenNums.poll();
+            else sum += oddNums.poll();
         }
 
         return sum;
