@@ -10,19 +10,16 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b) -> a - b );
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b) -> a.val - b.val );
 
-        for(ListNode l:lists){
-            while(l != null){
-                pq.offer(l.val);
-                l = l.next;
-            }
-        }
+        for(ListNode l:lists) if(l != null) pq.offer(l);
 
         ListNode dummy = new ListNode();
         ListNode head = dummy;
-        while(pq.peek() != null){
-            head.next= new ListNode(pq.poll());
+        while(!pq.isEmpty()){
+            ListNode l = pq.poll();
+            if(l.next != null) pq.offer(l.next);
+            head.next= l;
             head = head.next;
         }
 
