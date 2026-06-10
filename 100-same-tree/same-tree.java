@@ -18,8 +18,6 @@ class Solution {
         Queue<TreeNode> queue1 = new LinkedList<>();
         Queue<TreeNode> queue2 = new LinkedList<>();
 
-        if(p == null && q == null) return true;
-
         queue1.offer(p);
         queue2.offer(q);
 
@@ -28,20 +26,20 @@ class Solution {
             for(int i = 0; i<levelSize; i++){
                 TreeNode tree1 = queue1.poll();
                 TreeNode tree2 = queue2.poll();
+
                 if(tree1 == null && tree2 == null) continue;
-                if( (tree1 == null && tree2 != null) || (tree1 != null && tree2 == null) ) return false;
+
+                if(tree1 == null || tree2 == null) return false;
+
                 if(tree1.val != tree2.val) return false;
-                if(tree1 != null){
-                    queue1.offer(tree1.left);
-                    queue1.offer(tree1.right);
-                }
-                if(tree2 != null){
-                    queue2.offer(tree2.left);
-                    queue2.offer(tree2.right);
-                }
+
+                queue1.offer(tree1.left);
+                queue1.offer(tree1.right);
+                queue2.offer(tree2.left);
+                queue2.offer(tree2.right);
             }
         }
 
-        return true;
+        return queue1.size() == queue2.size();
     }
 }
