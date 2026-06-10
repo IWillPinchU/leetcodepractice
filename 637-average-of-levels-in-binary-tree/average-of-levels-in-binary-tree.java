@@ -23,16 +23,16 @@ class Solution {
 
         while(!queue.isEmpty()){
             int levelSize = queue.size();
-            Double sum = 0.0;
+            double levelSum = 0;
 
             for(int i = 0; i<levelSize; i++){
                 TreeNode currNode = queue.poll();
-                sum += currNode.val;
+                levelSum += currNode.val;
 
                 if(currNode.left != null) queue.offer(currNode.left);
                 if(currNode.right != null) queue.offer(currNode.right);
             }
-            result.add(sum / levelSize);
+            result.add(levelSum/levelSize);
         }
         return result;
     }
