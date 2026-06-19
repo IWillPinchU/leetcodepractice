@@ -15,11 +15,11 @@
  */
 class Solution {
     public TreeNode bstFromPreorder(int[] preorder) {
-        TreeNode root = new TreeNode();
+        TreeNode root = null;
         for(int element: preorder){
-            insertIntoBST(element, root);
+            root = insertIntoBST(element, root);
         }
-        return root.right;
+        return root;
     }
 
     public TreeNode insertIntoBST(int element, TreeNode root){
